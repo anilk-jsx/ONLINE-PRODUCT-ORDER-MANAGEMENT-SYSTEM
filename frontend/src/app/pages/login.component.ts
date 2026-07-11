@@ -10,6 +10,7 @@ import { Component } from '@angular/core'; import { CommonModule } from '@angula
       <label class="form-label fw-bold">Password</label><input class="form-control form-control-lg mb-3" type="password" formControlName="password">
       <button class="btn btn-primary btn-lg w-100">{{mode==='login' ? 'Login' : 'Create Account'}}</button>
       <p class="text-danger small mt-3 mb-0" *ngIf="error">{{error}}</p>
+      
       <p class="text-muted small mt-3 mb-0">Admin: admin&#64;quickmart.com / admin123<br>Customer: customer&#64;quickmart.com / customer123</p>
     </form>
   </div>
