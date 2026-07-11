@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class ApiService {
-  private base = 'https://accomplished-empathy-production-3a5e.up.railway.app/api';
+  private base = 'https://quickmart-backend-g51v.onrender.com/api';
   constructor(private http: HttpClient) {}
   login(data: any): Observable<any> { return this.http.post(this.base + '/auth/login', data); }
   products(q = ''): Observable<any[]> { return this.http.get<any[]>(this.base + '/products?search=' + encodeURIComponent(q)); }
