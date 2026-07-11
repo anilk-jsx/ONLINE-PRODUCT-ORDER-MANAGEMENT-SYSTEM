@@ -3,7 +3,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideRouter, CanActivateFn, Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { AppComponent } from './app/app.component';
-const guard: CanActivateFn = () => localStorage.getItem('allmart_user') ? true : inject(Router).createUrlTree(['/login']);
+const guard: CanActivateFn = () => localStorage.getItem('quickmart_user') ? true : inject(Router).createUrlTree(['/login']);
 bootstrapApplication(AppComponent, { providers: [provideHttpClient(), provideRouter([
   { path: 'login', loadComponent: () => import('./app/pages/login.component').then(m => m.LoginComponent) },
   { path: '', loadComponent: () => import('./app/pages/dashboard.component').then(m => m.DashboardComponent), canActivate: [guard] },
