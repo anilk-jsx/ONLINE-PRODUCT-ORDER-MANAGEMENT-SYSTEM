@@ -1,0 +1,4 @@
+package com.example.oms.entity;
+import jakarta.persistence.*; import lombok.*; import java.time.LocalDateTime;
+@Entity @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+public class CustomerIssue { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; @ManyToOne private Customer customer; @ManyToOne private Order order; private String subject; @Column(length=2000) private String message; @Enumerated(EnumType.STRING) private IssueStatus status=IssueStatus.OPEN; private LocalDateTime createdAt=LocalDateTime.now(); public enum IssueStatus { OPEN, IN_PROGRESS, RESOLVED } }

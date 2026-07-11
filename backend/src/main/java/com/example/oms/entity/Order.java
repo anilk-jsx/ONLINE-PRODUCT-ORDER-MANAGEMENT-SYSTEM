@@ -1,0 +1,4 @@
+package com.example.oms.entity;
+import jakarta.persistence.*; import lombok.*; import java.math.BigDecimal; import java.time.LocalDateTime; import java.util.*;
+@Entity @Table(name="orders") @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+public class Order { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; @Column(unique=true) private String orderNumber; @ManyToOne private Customer customer; @Enumerated(EnumType.STRING) private OrderStatus status=OrderStatus.PENDING; private BigDecimal subtotal; private BigDecimal gstAmount; private BigDecimal total; private String deliveryAddress; private LocalDateTime createdAt=LocalDateTime.now(); @OneToMany(mappedBy="order", cascade=CascadeType.ALL) private List<OrderItem> items=new ArrayList<>(); }

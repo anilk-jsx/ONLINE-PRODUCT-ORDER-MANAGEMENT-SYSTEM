@@ -1,0 +1,412 @@
+:root {
+  --ink:#172033;
+  --muted:#667085;
+  --line:#d7e0e7;
+  --brand:#0f766e;
+  --brand-dark:#123047;
+  --gold:#f59e0b;
+  --blue:#2563eb;
+  --bg:#f4f7fb;
+  --panel:#ffffff;
+}
+* { box-sizing:border-box; }
+body { margin:0; font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif; color:var(--ink); background:var(--bg); letter-spacing:0; }
+button, input, select, textarea { font:inherit; }
+.shell { display:grid; grid-template-columns:276px minmax(0,1fr); min-height:100vh; }
+.sidebar { background:var(--brand-dark); color:white; padding:24px 18px; display:flex; flex-direction:column; gap:20px; }
+.brand { display:flex; align-items:center; gap:12px; font-size:22px; font-weight:850; line-height:1.1; }
+.brand-mark { width:44px; height:44px; border-radius:8px; background:var(--gold); color:#182230; display:grid; place-items:center; font-weight:900; }
+.brand small { display:block; font-size:12px; color:#c8d7e1; font-weight:650; margin-top:4px; }
+.nav-link { color:#d8e7ef; border-radius:8px; margin:2px 0; padding:11px 13px; font-weight:700; }
+.nav-link.active,.nav-link:hover { background:var(--brand); color:#fff; }
+.sidebar-footer { margin-top:auto; color:#b8cad5; font-size:13px; border-top:1px solid rgba(255,255,255,.13); padding-top:16px; }
+.content { padding:28px clamp(18px,3vw,36px); }
+.toolbar { display:flex; gap:14px; justify-content:space-between; align-items:center; margin-bottom:20px; flex-wrap:wrap; }
+.eyebrow { color:var(--brand); font-size:12px; font-weight:850; text-transform:uppercase; }
+.page-title { font-size:34px; font-weight:900; margin:0; }
+.subtle { color:var(--muted); }
+.panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:20px; box-shadow:0 12px 28px rgba(23,32,51,.06); }
+.grid { display:grid; grid-template-columns:repeat(auto-fit,minmax(238px,1fr)); gap:18px; }
+.kpi-row { display:grid; grid-template-columns:repeat(4,minmax(160px,1fr)); gap:18px; margin-bottom:20px; }
+.stat { border-left:5px solid var(--brand); }
+.stat strong { font-size:34px; display:block; }
+.price { color:var(--brand); font-weight:850; font-size:20px; }
+.badge-soft { background:#e6fffb; color:#0f766e; border:1px solid #99f6e4; }
+.btn-primary { background:var(--brand); border-color:var(--brand); }
+.btn-primary:hover { background:#115e59; border-color:#115e59; }
+.btn-warning { background:var(--gold); border-color:var(--gold); color:#172033; font-weight:800; }
+.form-control,.form-select { border-color:#cbd5e1; }
+.searchbar { min-width:min(360px,100%); }
+.table thead th { color:#667085; font-size:12px; text-transform:uppercase; white-space:nowrap; }
+.product-card { display:flex; flex-direction:column; min-height:100%; }
+.product-img { height:150px; border-radius:8px; display:grid; place-items:center; font-weight:900; color:#123047; background:linear-gradient(135deg,#d9f99d,#bfdbfe); font-size:38px; }
+.product-img span { font-size:15px; text-align:center; padding:10px; }
+.login-page { min-height:100vh; display:grid; grid-template-columns:minmax(380px, 1fr) minmax(360px, 520px); background:#f7faf8; }
+.login-visual { position:relative; min-height:100vh; color:#fff; padding:48px; display:flex; flex-direction:column; justify-content:flex-end; overflow:hidden; background:linear-gradient(180deg,rgba(8,47,73,.10),rgba(8,47,73,.88)), linear-gradient(135deg,#164e63 0%,#0f766e 48%,#f59e0b 100%); }
+.warehouse-art { position:absolute; inset:0; opacity:.5; background:repeating-linear-gradient(90deg,transparent 0 90px,rgba(255,255,255,.18) 91px 94px), repeating-linear-gradient(0deg,transparent 0 84px,rgba(255,255,255,.14) 85px 88px); }
+.login-visual::after { content:""; position:absolute; width:78%; height:44%; left:10%; top:20%; border:2px solid rgba(255,255,255,.35); border-radius:8px; box-shadow:0 26px 0 rgba(255,255,255,.12), 0 52px 0 rgba(255,255,255,.10); transform:perspective(700px) rotateX(18deg); }
+.login-copy { position:relative; z-index:1; max-width:620px; }
+.login-copy h1 { font-size:58px; line-height:1; font-weight:950; margin:12px 0; }
+.login-copy p { font-size:18px; color:#e6f3ef; max-width:520px; }
+.login-card-wrap { display:grid; place-items:center; padding:36px; }
+.login-card { width:min(440px,100%); }
+.segmented { display:grid; grid-template-columns:1fr 1fr; background:#e7f1ed; border-radius:8px; padding:5px; margin-bottom:22px; }
+.segmented button { border:0; background:transparent; border-radius:6px; padding:12px; font-weight:850; color:#38505a; }
+.segmented button.active { background:white; color:var(--brand); box-shadow:0 1px 4px rgba(0,0,0,.08); }
+.invoice-box { max-width:840px; margin:auto; }
+.invoice-head { display:flex; justify-content:space-between; gap:18px; border-bottom:2px solid var(--brand); padding-bottom:16px; margin-bottom:18px; }
+@media (max-width: 920px) {
+  .shell { grid-template-columns:1fr; }
+  .sidebar { min-height:auto; }
+  .kpi-row { grid-template-columns:repeat(2,minmax(150px,1fr)); }
+  .login-page { grid-template-columns:1fr; }
+  .login-visual { min-height:380px; }
+}
+
+
+.topbar { display:flex; justify-content:flex-end; align-items:center; gap:12px; margin-bottom:18px; }
+.topbar-user { color:var(--muted); font-weight:700; }
+.sidebar-footer .btn { display:none; }
+.category-strip { display:flex; gap:22px; overflow-x:auto; background:white; border:1px solid var(--line); border-radius:8px; padding:12px 16px 0; margin-bottom:18px; scrollbar-width:thin; }
+.category-tab { min-width:96px; border:0; background:transparent; padding:0 0 12px; color:#172033; font-weight:800; text-align:center; border-bottom:5px solid transparent; }
+.category-tab.active { color:#0f766e; border-bottom-color:#2563eb; }
+.cat-icon { width:52px; height:52px; margin:0 auto 8px; display:grid; place-items:center; border-radius:8px; background:#eef6ff; font-size:28px; }
+.category-tab.active .cat-icon { background:#dbeafe; }
+.hero-slider { position:relative; overflow:hidden; border-radius:8px; min-height:300px; margin-bottom:22px; color:white; background:#111827; }
+.hero-slide { min-height:300px; padding:42px; display:flex; align-items:center; background:linear-gradient(110deg,#061826 0%,#123047 42%,#0f766e 100%); }
+.hero-slide.alt { background:linear-gradient(110deg,#1e1b4b 0%,#0f172a 45%,#2563eb 100%); }
+.hero-slide.fashion { background:linear-gradient(110deg,#3b0a24 0%,#7f1d1d 50%,#f59e0b 100%); }
+.hero-copy h2 { font-size:48px; font-weight:950; margin:0 0 10px; }
+.hero-copy p { font-size:20px; max-width:620px; margin:0; color:#e5eef7; }
+.hero-art { margin-left:auto; width:330px; height:210px; border-radius:22px; background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(255,255,255,.08) 34%,transparent 35%), linear-gradient(135deg,rgba(255,255,255,.22),rgba(255,255,255,.05)); transform:rotate(-8deg); box-shadow:0 28px 70px rgba(0,0,0,.25); }
+.slider-dots { position:absolute; left:0; right:0; bottom:14px; display:flex; justify-content:center; gap:10px; }
+.slider-dots span { width:26px; height:6px; border-radius:99px; background:rgba(255,255,255,.45); }
+.slider-dots span.active { width:54px; background:white; }
+@media (max-width: 860px) {
+  .hero-slide { padding:28px; }
+  .hero-art { display:none; }
+  .hero-copy h2 { font-size:34px; }
+}
+
+
+.cart-count { background:#f59e0b; color:#172033; border-radius:999px; padding:2px 8px; font-size:12px; margin-left:6px; }
+.product-card { cursor:pointer; transition:transform .15s ease, box-shadow .15s ease; }
+.product-card:hover { transform:translateY(-2px); box-shadow:0 16px 34px rgba(23,32,51,.10); }
+.detail-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.42); display:grid; place-items:center; padding:20px; z-index:20; }
+.detail-modal { width:min(720px,100%); background:white; border-radius:8px; padding:24px; box-shadow:0 30px 80px rgba(0,0,0,.28); }
+.detail-hero { height:190px; border-radius:8px; display:grid; place-items:center; background:linear-gradient(135deg,#d9f99d,#bfdbfe); font-size:24px; font-weight:900; color:#123047; margin-bottom:18px; }
+
+
+.customer-app { min-height:100vh; background:#e9edf3; }
+.amz-header { height:70px; background:#111827; color:white; display:grid; grid-template-columns:auto auto minmax(280px,1fr) auto auto auto auto; align-items:center; gap:18px; padding:0 18px; position:sticky; top:0; z-index:15; }
+.hamburger { border:1px solid rgba(255,255,255,.45); background:transparent; color:white; width:42px; height:42px; border-radius:6px; font-size:26px; line-height:1; }
+.amz-logo { font-size:30px; font-weight:950; letter-spacing:-1px; color:white; text-decoration:none; white-space:nowrap; }
+.amz-logo span { color:#f59e0b; }
+.amz-location { line-height:1.1; color:#d1d5db; font-size:12px; min-width:180px; }
+.amz-location strong { color:white; display:block; font-size:15px; }
+.amz-search { display:flex; height:46px; min-width:0; }
+.amz-search select { width:76px; border:0; background:#e5e7eb; border-radius:6px 0 0 6px; padding:0 8px; }
+.amz-search input { flex:1; border:0; padding:0 14px; font-size:17px; min-width:0; }
+.amz-search button { width:58px; border:0; background:#f59e0b; border-radius:0 6px 6px 0; font-size:24px; }
+.amz-action { color:white; text-decoration:none; line-height:1.1; font-size:12px; white-space:nowrap; background:transparent; border:0; text-align:left; }
+.amz-action strong { display:block; font-size:15px; }
+.amz-cart { color:white; text-decoration:none; display:flex; align-items:center; gap:4px; font-size:18px; font-weight:900; }
+.amz-cart-icon { font-size:34px; position:relative; }
+.amz-cart-count { color:#f59e0b; font-size:18px; font-weight:950; }
+.customer-subnav { height:42px; background:#1f2937; color:white; display:flex; align-items:center; gap:24px; padding:0 20px; overflow-x:auto; white-space:nowrap; }
+.customer-subnav a { color:white; text-decoration:none; font-weight:700; }
+.customer-content { padding:0 24px 32px; }
+.drawer-backdrop { position:fixed; inset:0; background:rgba(0,0,0,.65); z-index:30; display:flex; }
+.drawer { width:min(390px,92vw); background:white; height:100%; overflow:auto; }
+.drawer-head { background:#123047; color:white; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; font-size:24px; font-weight:900; }
+.drawer-close { background:transparent; border:0; color:white; font-size:34px; }
+.drawer-section { padding:20px 24px; border-bottom:1px solid #e5e7eb; }
+.drawer-section h3 { margin:0 0 14px; font-size:22px; }
+.drawer-section a, .drawer-section button { display:flex; justify-content:space-between; width:100%; padding:10px 0; border:0; background:transparent; color:#172033; text-decoration:none; font-size:17px; font-weight:650; }
+.customer-content .toolbar { margin-top:24px; }
+@media (max-width: 960px) {
+  .amz-header { grid-template-columns:auto auto 1fr auto; height:auto; padding:10px; gap:10px; }
+  .amz-location,.amz-action.returns { display:none; }
+  .amz-search { grid-column:1 / -1; }
+}
+
+
+.customer-app { min-height:100vh; background:#eef3f4; }
+.allmart-header { background:#123047; color:white; padding:14px 22px; display:grid; grid-template-columns:auto auto minmax(260px,1fr) auto auto auto; gap:16px; align-items:center; position:sticky; top:0; z-index:15; box-shadow:0 8px 24px rgba(15,23,42,.22); }
+.menu-button { width:42px; height:42px; border-radius:8px; border:1px solid rgba(255,255,255,.32); background:#193b55; color:white; font-size:24px; }
+.allmart-logo { color:white; text-decoration:none; font-weight:950; font-size:29px; letter-spacing:-.4px; white-space:nowrap; }
+.allmart-logo span { color:#fbbf24; }
+.allmart-search { display:flex; height:44px; min-width:0; border-radius:8px; overflow:hidden; border:2px solid transparent; }
+.allmart-search:focus-within { border-color:#fbbf24; }
+.allmart-search select { width:88px; border:0; background:#e8eef0; padding:0 8px; }
+.allmart-search input { flex:1; border:0; padding:0 14px; min-width:0; font-size:16px; }
+.allmart-search button { width:54px; border:0; background:#fbbf24; color:#123047; font-size:22px; font-weight:900; }
+.header-pill { color:white; text-decoration:none; border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:8px 10px; line-height:1.1; background:rgba(255,255,255,.06); white-space:nowrap; }
+.header-pill small { display:block; color:#d7e5eb; font-weight:650; }
+.cart-pill { color:#123047; text-decoration:none; background:#fbbf24; border-radius:8px; padding:9px 13px; font-weight:950; white-space:nowrap; }
+.customer-subnav { min-height:46px; background:white; color:#123047; display:flex; align-items:center; gap:12px; padding:0 22px; overflow-x:auto; white-space:nowrap; border-bottom:1px solid #d7e0e7; }
+.customer-subnav a, .customer-subnav button { color:#123047; text-decoration:none; font-weight:800; border:0; background:transparent; padding:10px 12px; border-radius:8px; }
+.customer-subnav a:hover, .customer-subnav button:hover { background:#e6fffb; color:#0f766e; }
+.customer-content { padding:0 24px 32px; }
+.drawer-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:30; display:flex; }
+.drawer { width:min(390px,92vw); background:white; height:100%; overflow:auto; box-shadow:18px 0 40px rgba(0,0,0,.25); }
+.drawer-head { background:#0f766e; color:white; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; font-size:23px; font-weight:900; }
+.drawer-close { background:transparent; border:0; color:white; font-size:34px; }
+.drawer-section { padding:20px 24px; border-bottom:1px solid #e5e7eb; }
+.drawer-section h3 { margin:0 0 14px; font-size:22px; }
+.drawer-section a, .drawer-section button { display:flex; justify-content:space-between; width:100%; padding:10px 0; border:0; background:transparent; color:#172033; text-decoration:none; font-size:17px; font-weight:650; }
+.customer-content .toolbar { margin-top:24px; }
+.product-photo { width:100%; height:100%; object-fit:contain; padding:12px; }
+@media (max-width: 960px) {
+  .allmart-header { grid-template-columns:auto auto 1fr auto; gap:10px; }
+  .header-pill.account { display:none; }
+  .allmart-search { grid-column:1 / -1; }
+}
+
+
+.customer-app { min-height:100vh; background:#eef3f4; }
+.allmart-header { background:#123047; color:white; padding:14px 22px; display:grid; grid-template-columns:auto auto minmax(260px,1fr) auto auto auto; gap:16px; align-items:center; position:sticky; top:0; z-index:15; box-shadow:0 8px 24px rgba(15,23,42,.22); }
+.menu-button { width:42px; height:42px; border-radius:8px; border:1px solid rgba(255,255,255,.32); background:#193b55; color:white; font-size:24px; }
+.allmart-logo { color:white; text-decoration:none; font-weight:950; font-size:29px; letter-spacing:-.4px; white-space:nowrap; }
+.allmart-logo span { color:#fbbf24; }
+.allmart-search { display:flex; height:44px; min-width:0; border-radius:8px; overflow:hidden; border:2px solid transparent; }
+.allmart-search:focus-within { border-color:#fbbf24; }
+.allmart-search select { width:88px; border:0; background:#e8eef0; padding:0 8px; }
+.allmart-search input { flex:1; border:0; padding:0 14px; min-width:0; font-size:16px; }
+.allmart-search button { width:54px; border:0; background:#fbbf24; color:#123047; font-size:22px; font-weight:900; }
+.header-pill { color:white; text-decoration:none; border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:8px 10px; line-height:1.1; background:rgba(255,255,255,.06); white-space:nowrap; }
+.header-pill small { display:block; color:#d7e5eb; font-weight:650; }
+.cart-pill { color:#123047; text-decoration:none; background:#fbbf24; border-radius:8px; padding:9px 13px; font-weight:950; white-space:nowrap; }
+.customer-subnav { min-height:46px; background:white; color:#123047; display:flex; align-items:center; gap:12px; padding:0 22px; overflow-x:auto; white-space:nowrap; border-bottom:1px solid #d7e0e7; }
+.customer-subnav a, .customer-subnav button { color:#123047; text-decoration:none; font-weight:800; border:0; background:transparent; padding:10px 12px; border-radius:8px; }
+.customer-subnav a:hover, .customer-subnav button:hover { background:#e6fffb; color:#0f766e; }
+.customer-content { padding:0 24px 32px; }
+.drawer-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:30; display:flex; }
+.drawer { width:min(390px,92vw); background:white; height:100%; overflow:auto; box-shadow:18px 0 40px rgba(0,0,0,.25); }
+.drawer-head { background:#0f766e; color:white; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; font-size:23px; font-weight:900; }
+.drawer-close { background:transparent; border:0; color:white; font-size:34px; }
+.drawer-section { padding:20px 24px; border-bottom:1px solid #e5e7eb; }
+.drawer-section h3 { margin:0 0 14px; font-size:22px; }
+.drawer-section a, .drawer-section button { display:flex; justify-content:space-between; width:100%; padding:10px 0; border:0; background:transparent; color:#172033; text-decoration:none; font-size:17px; font-weight:650; }
+.customer-content .toolbar { margin-top:24px; }
+.product-photo { width:100%; height:100%; object-fit:contain; padding:12px; }
+@media (max-width: 960px) {
+  .allmart-header { grid-template-columns:auto auto 1fr auto; gap:10px; }
+  .header-pill.account { display:none; }
+  .allmart-search { grid-column:1 / -1; }
+}
+
+
+.shop-intro { margin:24px 0 16px; background:linear-gradient(135deg,#0f766e,#123047); color:white; border-radius:8px; padding:26px; display:flex; justify-content:space-between; gap:20px; align-items:center; }
+.shop-intro h1 { margin:0; font-size:34px; font-weight:950; }
+.shop-intro p { margin:6px 0 0; color:#dff7f4; }
+.shop-search { max-width:420px; min-width:260px; background:white; border:0; border-radius:8px; padding:13px 14px; }
+.category-strip.compact { padding:10px 14px 0; gap:14px; }
+.category-strip.compact .category-tab { min-width:90px; font-size:14px; }
+.category-strip.compact .cat-icon { width:44px; height:44px; font-size:24px; }
+.sale-band { height:220px; border-radius:8px; overflow:hidden; margin:16px 0 22px; background:#101827; color:white; position:relative; display:grid; grid-template-columns:1fr 280px; }
+.sale-band-copy { padding:32px; align-self:center; }
+.sale-band-copy h2 { margin:0 0 10px; font-size:38px; font-weight:950; }
+.sale-band-copy p { margin:0; color:#d8e8f0; font-size:17px; }
+.sale-band-art { background:linear-gradient(135deg,#fbbf24,#0f766e); display:grid; place-items:center; font-size:82px; }
+.sale-dots { position:absolute; left:0; right:0; bottom:12px; display:flex; gap:8px; justify-content:center; }
+.sale-dots span { width:22px; height:6px; border-radius:999px; background:rgba(255,255,255,.42); }
+.sale-dots span.active { width:44px; background:white; }
+.product-img { background:#f8fafc; overflow:hidden; }
+.product-img img { width:100%; height:100%; object-fit:contain; padding:12px; display:block; }
+.product-img.fallback { background:linear-gradient(135deg,#e0f2fe,#dcfce7); }
+.product-meta { min-height:48px; }
+.load-more-row { display:flex; justify-content:center; margin:22px 0 6px; }
+.detail-hero img { width:100%; height:100%; object-fit:contain; padding:10px; }
+@media (max-width: 760px) {
+  .shop-intro { display:block; }
+  .shop-search { margin-top:14px; width:100%; max-width:none; }
+  .sale-band { grid-template-columns:1fr; height:auto; min-height:210px; }
+  .sale-band-art { display:none; }
+}
+
+
+.customer-app { min-height:100vh; background:#eef3f4; }
+.allmart-header { background:#123047; color:white; padding:14px 22px; display:grid; grid-template-columns:auto auto minmax(260px,1fr) auto auto auto; gap:16px; align-items:center; position:sticky; top:0; z-index:15; box-shadow:0 8px 24px rgba(15,23,42,.22); }
+.menu-button { width:42px; height:42px; border-radius:8px; border:1px solid rgba(255,255,255,.32); background:#193b55; color:white; font-size:24px; }
+.allmart-logo { color:white; text-decoration:none; font-weight:950; font-size:29px; letter-spacing:-.4px; white-space:nowrap; }
+.allmart-logo span { color:#fbbf24; }
+.allmart-search { display:flex; height:44px; min-width:0; border-radius:8px; overflow:hidden; border:2px solid transparent; }
+.allmart-search:focus-within { border-color:#fbbf24; }
+.allmart-search select { width:88px; border:0; background:#e8eef0; padding:0 8px; }
+.allmart-search input { flex:1; border:0; padding:0 14px; min-width:0; font-size:16px; }
+.allmart-search button { width:54px; border:0; background:#fbbf24; color:#123047; font-size:22px; font-weight:900; }
+.header-pill { color:white; text-decoration:none; border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:8px 10px; line-height:1.1; background:rgba(255,255,255,.06); white-space:nowrap; }
+.header-pill small { display:block; color:#d7e5eb; font-weight:650; }
+.cart-pill { color:#123047; text-decoration:none; background:#fbbf24; border-radius:8px; padding:9px 13px; font-weight:950; white-space:nowrap; }
+.customer-subnav { min-height:46px; background:white; color:#123047; display:flex; align-items:center; gap:12px; padding:0 22px; overflow-x:auto; white-space:nowrap; border-bottom:1px solid #d7e0e7; }
+.customer-subnav a, .customer-subnav button { color:#123047; text-decoration:none; font-weight:800; border:0; background:transparent; padding:10px 12px; border-radius:8px; }
+.customer-subnav a:hover, .customer-subnav button:hover { background:#e6fffb; color:#0f766e; }
+.customer-content { padding:0 24px 32px; }
+.drawer-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:30; display:flex; }
+.drawer { width:min(390px,92vw); background:white; height:100%; overflow:auto; box-shadow:18px 0 40px rgba(0,0,0,.25); }
+.drawer-head { background:#0f766e; color:white; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; font-size:23px; font-weight:900; }
+.drawer-close { background:transparent; border:0; color:white; font-size:34px; }
+.drawer-section { padding:20px 24px; border-bottom:1px solid #e5e7eb; }
+.drawer-section h3 { margin:0 0 14px; font-size:22px; }
+.drawer-section a, .drawer-section button { display:flex; justify-content:space-between; width:100%; padding:10px 0; border:0; background:transparent; color:#172033; text-decoration:none; font-size:17px; font-weight:650; }
+.customer-content .toolbar { margin-top:24px; }
+.product-photo { width:100%; height:100%; object-fit:contain; padding:12px; }
+@media (max-width: 960px) {
+  .allmart-header { grid-template-columns:auto auto 1fr auto; gap:10px; }
+  .header-pill.account { display:none; }
+  .allmart-search { grid-column:1 / -1; }
+}
+
+
+.shop-intro { margin:24px 0 16px; background:linear-gradient(135deg,#0f766e,#123047); color:white; border-radius:8px; padding:26px; display:flex; justify-content:space-between; gap:20px; align-items:center; }
+.shop-intro h1 { margin:0; font-size:34px; font-weight:950; }
+.shop-intro p { margin:6px 0 0; color:#dff7f4; }
+.shop-search { max-width:420px; min-width:260px; background:white; border:0; border-radius:8px; padding:13px 14px; }
+.category-strip.compact { padding:10px 14px 0; gap:14px; }
+.category-strip.compact .category-tab { min-width:90px; font-size:14px; }
+.category-strip.compact .cat-icon { width:44px; height:44px; font-size:24px; }
+.sale-band { height:220px; border-radius:8px; overflow:hidden; margin:16px 0 22px; background:#101827; color:white; position:relative; display:grid; grid-template-columns:1fr 280px; }
+.sale-band-copy { padding:32px; align-self:center; }
+.sale-band-copy h2 { margin:0 0 10px; font-size:38px; font-weight:950; }
+.sale-band-copy p { margin:0; color:#d8e8f0; font-size:17px; }
+.sale-band-art { background:linear-gradient(135deg,#fbbf24,#0f766e); display:grid; place-items:center; font-size:82px; }
+.sale-dots { position:absolute; left:0; right:0; bottom:12px; display:flex; gap:8px; justify-content:center; }
+.sale-dots span { width:22px; height:6px; border-radius:999px; background:rgba(255,255,255,.42); }
+.sale-dots span.active { width:44px; background:white; }
+.product-img { background:#f8fafc; overflow:hidden; }
+.product-img img { width:100%; height:100%; object-fit:contain; padding:12px; display:block; }
+.product-img.fallback { background:linear-gradient(135deg,#e0f2fe,#dcfce7); }
+.product-meta { min-height:48px; }
+.load-more-row { display:flex; justify-content:center; margin:22px 0 6px; }
+.detail-hero img { width:100%; height:100%; object-fit:contain; padding:10px; }
+@media (max-width: 760px) {
+  .shop-intro { display:block; }
+  .shop-search { margin-top:14px; width:100%; max-width:none; }
+  .sale-band { grid-template-columns:1fr; height:auto; min-height:210px; }
+  .sale-band-art { display:none; }
+}
+
+
+.customer-app { min-height:100vh; background:#eef3f4; }
+.allmart-header { background:#123047; color:white; padding:14px 22px; display:grid; grid-template-columns:auto auto minmax(260px,1fr) auto auto auto; gap:16px; align-items:center; position:sticky; top:0; z-index:15; box-shadow:0 8px 24px rgba(15,23,42,.22); }
+.menu-button { width:42px; height:42px; border-radius:8px; border:1px solid rgba(255,255,255,.32); background:#193b55; color:white; font-size:24px; }
+.allmart-logo { color:white; text-decoration:none; font-weight:950; font-size:29px; letter-spacing:-.4px; white-space:nowrap; }
+.allmart-logo span { color:#fbbf24; }
+.allmart-search { display:flex; height:44px; min-width:0; border-radius:8px; overflow:hidden; border:2px solid transparent; }
+.allmart-search:focus-within { border-color:#fbbf24; }
+.allmart-search select { width:88px; border:0; background:#e8eef0; padding:0 8px; }
+.allmart-search input { flex:1; border:0; padding:0 14px; min-width:0; font-size:16px; }
+.allmart-search button { width:54px; border:0; background:#fbbf24; color:#123047; font-size:22px; font-weight:900; }
+.header-pill { color:white; text-decoration:none; border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:8px 10px; line-height:1.1; background:rgba(255,255,255,.06); white-space:nowrap; }
+.header-pill small { display:block; color:#d7e5eb; font-weight:650; }
+.cart-pill { color:#123047; text-decoration:none; background:#fbbf24; border-radius:8px; padding:9px 13px; font-weight:950; white-space:nowrap; }
+.customer-subnav { min-height:46px; background:white; color:#123047; display:flex; align-items:center; gap:12px; padding:0 22px; overflow-x:auto; white-space:nowrap; border-bottom:1px solid #d7e0e7; }
+.customer-subnav a, .customer-subnav button { color:#123047; text-decoration:none; font-weight:800; border:0; background:transparent; padding:10px 12px; border-radius:8px; }
+.customer-subnav a:hover, .customer-subnav button:hover { background:#e6fffb; color:#0f766e; }
+.customer-content { padding:0 24px 32px; }
+.drawer-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:30; display:flex; }
+.drawer { width:min(390px,92vw); background:white; height:100%; overflow:auto; box-shadow:18px 0 40px rgba(0,0,0,.25); }
+.drawer-head { background:#0f766e; color:white; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; font-size:23px; font-weight:900; }
+.drawer-close { background:transparent; border:0; color:white; font-size:34px; }
+.drawer-section { padding:20px 24px; border-bottom:1px solid #e5e7eb; }
+.drawer-section h3 { margin:0 0 14px; font-size:22px; }
+.drawer-section a, .drawer-section button { display:flex; justify-content:space-between; width:100%; padding:10px 0; border:0; background:transparent; color:#172033; text-decoration:none; font-size:17px; font-weight:650; }
+.customer-content .toolbar { margin-top:24px; }
+.product-photo { width:100%; height:100%; object-fit:contain; padding:12px; }
+@media (max-width: 960px) {
+  .allmart-header { grid-template-columns:auto auto 1fr auto; gap:10px; }
+  .header-pill.account { display:none; }
+  .allmart-search { grid-column:1 / -1; }
+}
+
+
+.shop-intro { margin:24px 0 16px; background:linear-gradient(135deg,#0f766e,#123047); color:white; border-radius:8px; padding:26px; display:flex; justify-content:space-between; gap:20px; align-items:center; }
+.shop-intro h1 { margin:0; font-size:34px; font-weight:950; }
+.shop-intro p { margin:6px 0 0; color:#dff7f4; }
+.shop-search { max-width:420px; min-width:260px; background:white; border:0; border-radius:8px; padding:13px 14px; }
+.category-strip.compact { padding:10px 14px 0; gap:14px; }
+.category-strip.compact .category-tab { min-width:90px; font-size:14px; }
+.category-strip.compact .cat-icon { width:44px; height:44px; font-size:24px; }
+.sale-band { height:220px; border-radius:8px; overflow:hidden; margin:16px 0 22px; background:#101827; color:white; position:relative; display:grid; grid-template-columns:1fr 280px; }
+.sale-band-copy { padding:32px; align-self:center; }
+.sale-band-copy h2 { margin:0 0 10px; font-size:38px; font-weight:950; }
+.sale-band-copy p { margin:0; color:#d8e8f0; font-size:17px; }
+.sale-band-art { background:linear-gradient(135deg,#fbbf24,#0f766e); display:grid; place-items:center; font-size:82px; }
+.sale-dots { position:absolute; left:0; right:0; bottom:12px; display:flex; gap:8px; justify-content:center; }
+.sale-dots span { width:22px; height:6px; border-radius:999px; background:rgba(255,255,255,.42); }
+.sale-dots span.active { width:44px; background:white; }
+.product-img { background:#f8fafc; overflow:hidden; }
+.product-img img { width:100%; height:100%; object-fit:contain; padding:12px; display:block; }
+.product-img.fallback { background:linear-gradient(135deg,#e0f2fe,#dcfce7); }
+.product-meta { min-height:48px; }
+.load-more-row { display:flex; justify-content:center; margin:22px 0 6px; }
+.detail-hero img { width:100%; height:100%; object-fit:contain; padding:10px; }
+@media (max-width: 760px) {
+  .shop-intro { display:block; }
+  .shop-search { margin-top:14px; width:100%; max-width:none; }
+  .sale-band { grid-template-columns:1fr; height:auto; min-height:210px; }
+  .sale-band-art { display:none; }
+}
+
+
+.customer-app { min-height:100vh; background:#eef3f4; }
+.allmart-header { background:#123047; color:white; padding:14px 22px; display:grid; grid-template-columns:auto auto minmax(260px,1fr) auto auto auto; gap:16px; align-items:center; position:sticky; top:0; z-index:15; box-shadow:0 8px 24px rgba(15,23,42,.22); }
+.menu-button { width:42px; height:42px; border-radius:8px; border:1px solid rgba(255,255,255,.32); background:#193b55; color:white; font-size:24px; }
+.allmart-logo { color:white; text-decoration:none; font-weight:950; font-size:29px; letter-spacing:-.4px; white-space:nowrap; }
+.allmart-logo span { color:#fbbf24; }
+.allmart-search { display:flex; height:44px; min-width:0; border-radius:8px; overflow:hidden; border:2px solid transparent; }
+.allmart-search:focus-within { border-color:#fbbf24; }
+.allmart-search select { width:88px; border:0; background:#e8eef0; padding:0 8px; }
+.allmart-search input { flex:1; border:0; padding:0 14px; min-width:0; font-size:16px; }
+.allmart-search button { width:54px; border:0; background:#fbbf24; color:#123047; font-size:22px; font-weight:900; }
+.header-pill { color:white; text-decoration:none; border:1px solid rgba(255,255,255,.18); border-radius:8px; padding:8px 10px; line-height:1.1; background:rgba(255,255,255,.06); white-space:nowrap; }
+.header-pill small { display:block; color:#d7e5eb; font-weight:650; }
+.cart-pill { color:#123047; text-decoration:none; background:#fbbf24; border-radius:8px; padding:9px 13px; font-weight:950; white-space:nowrap; }
+.customer-subnav { min-height:46px; background:white; color:#123047; display:flex; align-items:center; gap:12px; padding:0 22px; overflow-x:auto; white-space:nowrap; border-bottom:1px solid #d7e0e7; }
+.customer-subnav a, .customer-subnav button { color:#123047; text-decoration:none; font-weight:800; border:0; background:transparent; padding:10px 12px; border-radius:8px; }
+.customer-subnav a:hover, .customer-subnav button:hover { background:#e6fffb; color:#0f766e; }
+.customer-content { padding:0 24px 32px; }
+.drawer-backdrop { position:fixed; inset:0; background:rgba(15,23,42,.55); z-index:30; display:flex; }
+.drawer { width:min(390px,92vw); background:white; height:100%; overflow:auto; box-shadow:18px 0 40px rgba(0,0,0,.25); }
+.drawer-head { background:#0f766e; color:white; padding:18px 24px; display:flex; justify-content:space-between; align-items:center; font-size:23px; font-weight:900; }
+.drawer-close { background:transparent; border:0; color:white; font-size:34px; }
+.drawer-section { padding:20px 24px; border-bottom:1px solid #e5e7eb; }
+.drawer-section h3 { margin:0 0 14px; font-size:22px; }
+.drawer-section a, .drawer-section button { display:flex; justify-content:space-between; width:100%; padding:10px 0; border:0; background:transparent; color:#172033; text-decoration:none; font-size:17px; font-weight:650; }
+.customer-content .toolbar { margin-top:24px; }
+.product-photo { width:100%; height:100%; object-fit:contain; padding:12px; }
+@media (max-width: 960px) {
+  .allmart-header { grid-template-columns:auto auto 1fr auto; gap:10px; }
+  .header-pill.account { display:none; }
+  .allmart-search { grid-column:1 / -1; }
+}
+
+
+.shop-intro { margin:24px 0 16px; background:linear-gradient(135deg,#0f766e,#123047); color:white; border-radius:8px; padding:26px; display:flex; justify-content:space-between; gap:20px; align-items:center; }
+.shop-intro h1 { margin:0; font-size:34px; font-weight:950; }
+.shop-intro p { margin:6px 0 0; color:#dff7f4; }
+.shop-search { max-width:420px; min-width:260px; background:white; border:0; border-radius:8px; padding:13px 14px; }
+.category-strip.compact { padding:10px 14px 0; gap:14px; }
+.category-strip.compact .category-tab { min-width:90px; font-size:14px; }
+.category-strip.compact .cat-icon { width:44px; height:44px; font-size:24px; }
+.sale-band { height:220px; border-radius:8px; overflow:hidden; margin:16px 0 22px; background:#101827; color:white; position:relative; display:grid; grid-template-columns:1fr 280px; }
+.sale-band-copy { padding:32px; align-self:center; }
+.sale-band-copy h2 { margin:0 0 10px; font-size:38px; font-weight:950; }
+.sale-band-copy p { margin:0; color:#d8e8f0; font-size:17px; }
+.sale-band-art { background:linear-gradient(135deg,#fbbf24,#0f766e); display:grid; place-items:center; font-size:82px; }
+.sale-dots { position:absolute; left:0; right:0; bottom:12px; display:flex; gap:8px; justify-content:center; }
+.sale-dots span { width:22px; height:6px; border-radius:999px; background:rgba(255,255,255,.42); }
+.sale-dots span.active { width:44px; background:white; }
+.product-img { background:#f8fafc; overflow:hidden; }
+.product-img img { width:100%; height:100%; object-fit:contain; padding:12px; display:block; }
+.product-img.fallback { background:linear-gradient(135deg,#e0f2fe,#dcfce7); }
+.product-meta { min-height:48px; }
+.load-more-row { display:flex; justify-content:center; margin:22px 0 6px; }
+.detail-hero img { width:100%; height:100%; object-fit:contain; padding:10px; }
+@media (max-width: 760px) {
+  .shop-intro { display:block; }
+  .shop-search { margin-top:14px; width:100%; max-width:none; }
+  .sale-band { grid-template-columns:1fr; height:auto; min-height:210px; }
+  .sale-band-art { display:none; }
+}

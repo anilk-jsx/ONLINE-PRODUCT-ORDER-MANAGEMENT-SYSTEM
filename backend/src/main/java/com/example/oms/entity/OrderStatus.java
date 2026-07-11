@@ -1,0 +1,1 @@
+package com.example.oms.entity; public enum OrderStatus { PENDING, CONFIRMED, PACKED, OUT_FOR_DELIVERY, DELIVERED, CANCELLED }

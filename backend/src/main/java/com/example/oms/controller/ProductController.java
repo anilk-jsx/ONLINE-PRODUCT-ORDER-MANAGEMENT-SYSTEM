@@ -1,0 +1,4 @@
+package com.example.oms.controller;
+import com.example.oms.entity.Product; import com.example.oms.service.ProductService; import jakarta.validation.Valid; import lombok.RequiredArgsConstructor; import org.springframework.web.bind.annotation.*; import java.util.*;
+@RestController @RequestMapping("/products") @RequiredArgsConstructor
+public class ProductController { private final ProductService service; @GetMapping List<Product> all(@RequestParam(required=false) String search){ return service.search(search); } @GetMapping("/{id}") Product one(@PathVariable Long id){ return service.get(id); } @PostMapping Product save(@RequestParam Long categoryId, @Valid @RequestBody Product p){ return service.save(p, categoryId); } @PutMapping("/{id}") Product update(@PathVariable Long id, @RequestParam Long categoryId, @RequestBody Product p){ p.setId(id); return service.save(p, categoryId); } @DeleteMapping("/{id}") void delete(@PathVariable Long id){ service.delete(id); } }

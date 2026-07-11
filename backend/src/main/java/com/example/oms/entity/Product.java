@@ -1,0 +1,4 @@
+package com.example.oms.entity;
+import jakarta.persistence.*; import jakarta.validation.constraints.*; import lombok.*; import java.math.BigDecimal;
+@Entity @Getter @Setter @NoArgsConstructor @AllArgsConstructor @Builder
+public class Product { @Id @GeneratedValue(strategy = GenerationType.IDENTITY) private Long id; @ManyToOne(optional=false) private Category category; @NotBlank private String name; @Column(length=2000) private String description; private String imageUrl; @NotNull private BigDecimal price; private BigDecimal gstPercent=BigDecimal.valueOf(18); private Integer stockQty=0; @Column(unique=true) private String sku; private boolean active=true; }
