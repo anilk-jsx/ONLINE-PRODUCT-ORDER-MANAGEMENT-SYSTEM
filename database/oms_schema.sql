@@ -157,8 +157,8 @@ CREATE TABLE whatsapp_logs (
 
 INSERT INTO roles(name) VALUES ('ADMIN'), ('CUSTOMER');
 INSERT INTO users(name,email,password,phone,role_id) VALUES
-('Admin User','admin@oms.com','admin123','9999999999',1),
-('Demo Customer','customer@oms.com','customer123','8888888888',2);
+('Admin User','admin@quickmart.com','admin123','9999999999',1),
+('Demo Customer','customer@quickmart.com','customer123','8888888888',2);
 INSERT INTO customer(user_id,address,city,state,pincode) VALUES
 (2,'MG Road','Bhubaneswar','Odisha','751001');
 INSERT INTO category(name,description) VALUES
